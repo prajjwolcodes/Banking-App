@@ -3,9 +3,11 @@ import { Button } from "@/components/ui/button"
 import HeaderBox from '@/components/HeaderBox'
 import TotalBalanceBox from '@/components/TotalBalanceBox'
 import RightSidebar from '@/components/RightSidebar'
+import { getLoggedInUser } from '@/lib/actions/userActions'
 
-const page = () => {
-  const isLoggedIn = { firstName: "Prajjwol", lastName: "Shrestha", email: "shresthaprajjwol4@gmail.com" }
+const page = async () => {
+  const isLoggedIn = await getLoggedInUser()
+
   return (
     <section className="home">
       <div className="home-content">
@@ -13,7 +15,7 @@ const page = () => {
           <HeaderBox
             type="greeting"
             title="Welcome"
-            user={isLoggedIn?.firstName || "Guest"}
+            user={isLoggedIn?.name || "Guest"}
             subtext="Access and manage your account and transactions efficiently."
           />
           <TotalBalanceBox

@@ -31,6 +31,14 @@ export async function signIn(userData: signInProps) {
     try {
         const { account } = await createAdminClient();
         const user = await account.createEmailPasswordSession(email, password);
+
+        cookies().set("appwrite-session", user.secret, {
+            path: "/",
+            httpOnly: true,
+            sameSite: "strict",
+            secure: true,
+        });
+
         return parseStringify(user)
     } catch (error) {
         console.log(error);

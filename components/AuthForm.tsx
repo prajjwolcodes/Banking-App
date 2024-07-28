@@ -40,12 +40,12 @@ const AuthForm = ({ type }: { type: string }) => {
                 setUser(newUser)
             }
             if (type === "sign-in") {
-                const user = await signIn({
+                const users = await signIn({
                     email: data.email,
                     password: data.password
                 })
-                if (user) {
-                    setUser(user)
+                if (users) {
+                    setUser(users)
                     router.push("/")
                 }
             }
